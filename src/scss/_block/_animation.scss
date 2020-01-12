@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+/* アニメーション
+───────────────────────────────── */
+.animation0 {
+  @include fadeIn(
+    $duration: $duration,
+    $delay: 0s,
+    $easing: $easing,
+    $this: true
+  );
+}
+
+.animation1 {
+  @include slideIn(
+    $Y: 24px,
+    $X: 0,
+    $duration: $duration,
+    $delay: 0s,
+    $easing: $easing,
+    $origin: left top,
+    $this: true
+  );
+}
+
+.animation2 {
+  @include scaleIn(
+    $X: 0.9,
+    $Y: 0.9,
+    $duration: $duration,
+    $delay: 0s,
+    $easing: $easing,
+    $origin: center center,
+    $this: true
+  );
+}
+
+.animation3 {
+  @include blurIn(
+    $blur: 8px,
+    $duration: $duration,
+    $delay: 0s,
+    $easing: $easing,
+    $this: true
+  );
+}

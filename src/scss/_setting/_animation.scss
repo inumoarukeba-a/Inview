@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+/* フェードイン
+───────────────────────────────── */
+@mixin fadeIn(
+  $duration: $duration,
+  $delay: 0s,
+  $easing: $easing,
+  $this: false
+) {
+  opacity: 0;
+  transition-property: opacity;
+  transition-timing-function: $easing;
+  transition-duration: $duration;
+  transition-delay: $delay;
+  @if $this == true {
+    @at-root &.-inviewActive {
+      opacity: 1;
+    }
+  } @else {
+    @at-root .-inviewActive & {
+      opacity: 1;
+    }
+  }
+}
+
+/* スライドイン
+───────────────────────────────── */
+@mixin slideIn(
+  $Y: 0,
+  $X: 0,
+  $duration: $duration,
+  $delay: 0s,
+  $easing: $easing,
+  $origin: left top,
+  $this: false
+) {
+  transform: translateY($Y) translateX($X);
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-timing-function: $easing;
+  transition-duration: $duration;
+  transition-delay: $delay;
+  @if $this == true {
+    @at-root &.-inviewActive {
+      transform: translateY(0) translateX(0);
+      opacity: 1;
+    }
+  } @else {
+    @at-root .-inviewActive & {
+      transform: translateY(0) translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* スケールイン
+───────────────────────────────── */
+@mixin scaleIn(
+  $X: 1,
+  $Y: 1,
+  $duration: $duration,
+  $delay: 0s,
+  $easing: $easing,
+  $origin: center center,
+  $this: false
+) {
+  transform: scaleX($X) scaleY($Y);
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-timing-function: $easing;
+  transition-duration: $duration;
+  transition-delay: $delay;
+  transform-origin: $origin;
+  @if $this == true {
+    @at-root &.-inviewActive {
+      opacity: 1;
+      transform: scaleX(1) scaleY(1);
+    }
+  } @else {
+    @at-root .-inviewActive & {
+      opacity: 1;
+      transform: scaleX(1) scaleY(1);
+    }
+  }
+}
+
+/* ブラーイン
+───────────────────────────────── */
+@mixin blurIn(
+  $blur: 8px,
+  $duration: $duration,
+  $delay: 0s,
+  $easing: $easing,
+  $this: false
+) {
+  filter: blur($blur);
+  opacity: 0;
+  transition-property: filter, opacity;
+  transition-timing-function: $easing;
+  transition-duration: $duration;
+  transition-delay: $delay;
+  will-change: filter, opacity;
+  @if $this == true {
+    @at-root &.-inviewActive {
+      filter: blur(0);
+      opacity: 1;
+    }
+  } @else {
+    @at-root .-inviewActive & {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* ストロークアニメーション
+───────────────────────────────── */
+@mixin strokeSvg() {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0.3;
+  stroke-dasharray: 150% 150%;
+  opacity: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+
+@keyframes strokeSvg {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 150%;
+    fill-opacity: 0;
+  }
+  61.8% {
+    opacity: 1;
+    stroke-dashoffset: 0%;
+    fill-opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0%;
+    fill-opacity: 1;
+  }
+}
+
+/* バウンス
+───────────────────────────────── */
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  38.2% {
+    transform: scale(0.8382);
+  }
+  61.8% {
+    transform: scale(1.1618);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* クロークイン
+───────────────────────────────── */
+@keyframes cloakIn {
+  0% {
+    opacity: 0;
+  }
+}
